@@ -1,4 +1,4 @@
-# app/weather_service.py
+#app/weather_service.py
 
 import os
 import json
@@ -25,6 +25,7 @@ def get_hourly_forecasts(zip_code=MY_ZIP, country_code=COUNTRY_CODE):
     request_url = f"https://api.openweathermap.org/data/2.5/forecast?zip={zip_code},{country_code}&units=imperial&appid={OPEN_WEATHER_API_KEY}"
     response = requests.get(request_url)
     parsed_response = json.loads(response.text)
+    print(parsed_response)
     #print(parsed_response.keys()) #> dict_keys(['cod', 'message', 'cnt', 'list', 'city'])
     result = {
         "city_name": parsed_response["city"]["name"],
