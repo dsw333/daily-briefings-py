@@ -7,7 +7,7 @@ from datetime import date
 
 from app import APP_ENV
 from app.weather_service import get_hourly_forecasts
-from app.email_service import send_email
+from app.sms_service import send_sms
 
 load_dotenv()
 
