@@ -1,6 +1,6 @@
-# Daily Briefings Service (Python)
+# Weather SMS Service (Python)
 
-Sends you a customized email every morning, with information of interest such as the upcoming weather forecast.
+Sends you a customized SMS message, with information of interest based on the upcoming weather forecast.
 
 ## Setup
 
@@ -21,9 +21,11 @@ Then, from within the virtual environment, install package dependencies:
 
 ```sh
 pip install -r requirements.txt
+
+Make sure that you pip install Twilio 
 ```
 
-Obtain API Keys from the [Open Weather](https://home.openweathermap.org/api_keys), and [SendGrid](https://app.sendgrid.com/settings/api_keys) services. Create a new file called ".env" in the root directory of this repo, and paste the following contents inside, using your own values as appropriate:
+Obtain API Keys from the [Open Weather](https://home.openweathermap.org/api_keys), and [Twilio](https://www.twilio.com/docs/sms/quickstart/python) services. Create a new file called ".env" in the root directory of this repo, and paste the following contents inside, using your own values as appropriate:
 
 ```sh
 # .env example
@@ -33,17 +35,19 @@ APP_ENV="development" # or set to "production" on Heroku server
 OPEN_WEATHER_API_KEY="___________"
 MY_ZIP="10017"
 
-SENDGRID_API_KEY="_______________"
-MY_EMAIL_ADDRESS="hello@example.com"
+account_sid = 'ACXXXXXXXXXXX'
+auth_token = 'acXXXXXXXXXXX'
 
-MY_NAME="Jon Snow"
+SENDER_SMS = "+12058272450"
+RECIPIENT_SMS = "+XXXXXXXXXXXXX"
+#MY_NAME="DAN"
 ```
 
 > IMPORTANT: remember to save the ".env" file :-D
 
 ## Usage
 
-From within the virtual environment, ensure you can run each of the following files and see them produce their desired results of: printing today's weather forecast, and sending an example email, respectively.
+From within the virtual environment, ensure you can run each of the following files and see them produce their desired results of: printing today's weather forecast, and sending an example SMS, respectively.
 
 ```sh
 python -m app.weather_service # note the module-syntax invocation
@@ -51,18 +55,12 @@ python -m app.weather_service # note the module-syntax invocation
 ```
 
 ```sh
-python -m app.email_service # note the module-syntax invocation
-#> SENDING EMAIL TO ...
+python -m app.sms_service # note the module-syntax invocation
+#> SENDING SMS TO ...
 ```
-
-> NOTE: the Sendgrid emails might first start showing up in spam, until you designate them as coming from a trusted source (i.e. "Looks Safe")
->
-> ![](https://user-images.githubusercontent.com/1328807/77856232-c7a0ff80-71c3-11ea-9dce-7a32b88701c6.png)
 
 As long as each of those scripts works by itself, you can send the daily briefing email:
 
 ```sh
 python -m app.daily_briefing # note the module-syntax invocation
 ```
-
-![](https://user-images.githubusercontent.com/1328807/77860069-173ef580-71db-11ea-83c6-5897bb9f4f51.png)
